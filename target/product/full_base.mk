@@ -20,22 +20,10 @@
 # in inherited configurations.
 
 PRODUCT_PACKAGES := \
-    libfwdlockengine \
-    OpenWnn \
-    libWnnEngDic \
-    libWnnJpnDic \
-    libwnndict \
-    WAPPushManager
+    libfwdlockengine
 
 PRODUCT_PACKAGES += \
-    Galaxy4 \
-    HoloSpiralWallpaper \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    MagicSmokeWallpapers \
-    NoiseField \
-    PhaseBeam \
-    PhotoTable
+    LiveWallpapersPicker
 
 # Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -44,9 +32,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Put en_US first in the list, so make it default.
 PRODUCT_LOCALES := en_US
-
-# Get the TTS language packs
-$(call inherit-product-if-exists, external/svox/pico/lang/all_pico_languages.mk)
 
 # Get a list of languages.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
