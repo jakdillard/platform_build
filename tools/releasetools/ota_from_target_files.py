@@ -704,6 +704,13 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
                    ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
     script.FlashSuperSU()
 
+  if block_based:
+    script.Print(" ")
+    script.Print("Flashing Busybox..")
+    common.ZipWriteStr(output_zip, "busybox/busybox.zip",
+                   ""+input_zip.read("SYSTEM/addon.d/UPDATE-Busybox.zip"))
+    script.FlashBusybox()
+
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
 
