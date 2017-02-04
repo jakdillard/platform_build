@@ -146,9 +146,6 @@ class EdifyGenerator(object):
            ");")
     self.script.append(self.WordWrap(cmd))
 
-  def RunBackup(self, command):
-    self.script.append(('run_program("/tmp/install/bin/backuptool.sh", "%s");' % command))
-
   def FlashSuperSU(self):
     self.script.append('package_extract_dir("supersu", "/tmp/supersu");')
     self.script.append('run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/google/android/*", "-d", "/tmp/supersu");')
@@ -224,12 +221,6 @@ class EdifyGenerator(object):
           p.fs_type, common.PARTITION_TYPES[p.fs_type], p.device,
           p.mount_point, mount_flags))
       self.mounts.add(p.mount_point)
-
-  def Unmount(self, mount_point):
-    """Unmount the partiiton with the given mount_point."""
-    if mount_point in self.mounts:
-      self.mounts.remove(mount_point)
-      self.script.append('unmount("%s");' % (mount_point,))
 
   def UnpackPackageDir(self, src, dst):
     """Unpack a given directory from the OTA package into the given
